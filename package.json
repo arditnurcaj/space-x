@@ -16,6 +16,10 @@
     "src/**/*.{js,jsx,ts,tsx,css,scss,md}": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.9",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "framer-motion": "^8.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "zustand": "^4.2.0"
