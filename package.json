@@ -16,14 +16,15 @@
     "src/**/*.{js,jsx,ts,tsx,css,scss,md}": "prettier --write --ignore-unknown"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.5",
     "@chakra-ui/react": "^2.4.9",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "framer-motion": "^8.5.2",
+    "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.7.1",
-    "zustand": "^4.2.0"
+    "react-icons": "^4.7.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",

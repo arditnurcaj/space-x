@@ -29,7 +29,7 @@ const FilterForm = (): JSX.Element => {
         aria-label='gallery-icon-button'
         padding='2'
         ml='3'
-        as={IoFilter}
+        icon={<IoFilter />}
       />
 
       <Drawer
