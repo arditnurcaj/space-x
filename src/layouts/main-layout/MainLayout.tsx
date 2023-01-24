@@ -13,7 +13,13 @@ const MainLayout = (props: MainLayoutProps): JSX.Element => {
         </Heading>
       </Box>
 
-      <Box as='main' overflowX='hidden' overflowY='scroll' px='14' py='7'>
+      <Box
+        as='main'
+        overflowX='hidden'
+        overflowY='scroll'
+        px={[5, 5, 14]}
+        py='7'
+      >
         {children}
       </Box>
     </Box>

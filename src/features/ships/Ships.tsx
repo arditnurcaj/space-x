@@ -1,11 +1,17 @@
+import { useState } from 'react';
+
 import { Flex, Heading, IconButton } from '@chakra-ui/react';
 import { IoGridOutline, IoListOutline } from 'react-icons/io5';
 
 import { MainLayout } from '@/layouts';
 
-import { FilterForm } from './components';
+import { FilterForm, ShipsList, ShipsGallery } from './components';
+
+import { LayoutView } from './Ships.types';
 
 const Ships = (): JSX.Element => {
+  const [selectedView, setSelectedView] = useState(LayoutView.LIST);
+
   return (
     <MainLayout>
       <Flex alignItems='center' justifyContent='space-between'>
@@ -14,24 +20,24 @@ const Ships = (): JSX.Element => {
         </Heading>
 
         <Flex alignItems='center'>
-          <IconButton
-            isActive
-            cursor='pointer'
-            aria-label='list-button'
-            padding='2'
-            as={IoListOutline}
-          />
-          <IconButton
-            cursor='pointer'
-            aria-label='gallery-icon-button'
-            padding='2'
-            ml='3'
-            as={IoGridOutline}
-          />
+          {Object.values(LayoutView).map((view, index) => (
+            <IconButton
+              key={index}
+              isActive={selectedView === view}
+              cursor='pointer'
+              aria-label='view-button'
+              padding='2'
+              as={view === LayoutView.LIST ? IoListOutline : IoGridOutline}
+              onClick={() => setSelectedView(view)}
+              ml={2}
+            />
+          ))}
         </Flex>
 
         <FilterForm />
       </Flex>
+
+      {selectedView === LayoutView.LIST ? <ShipsList /> : <ShipsGallery />}
     </MainLayout>
   );
 };
