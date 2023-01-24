@@ -1,11 +1,7 @@
-import { Button } from '@chakra-ui/react';
+import { Ships } from '@/features';
 
 const App = (): JSX.Element => {
-  return (
-    <div>
-      Hello Space X <Button size='sm'>Test</Button>
-    </div>
-  );
+  return <Ships />;
 };
 
 export default App;
