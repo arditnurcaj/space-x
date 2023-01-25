@@ -21,6 +21,12 @@ Install dependencies
   yarn
 ```
 
+Generate GraphQL types based on schema defined on codegen.ts
+
+```bash
+  yarn codegen:compile
+```
+
 Start the server
 
 ```bash

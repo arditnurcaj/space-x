@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useQuery, gql } from '@apollo/client';
 
 import { Flex, Heading, IconButton } from '@chakra-ui/react';
 import { IoGridOutline, IoListOutline } from 'react-icons/io5';
@@ -10,26 +9,8 @@ import { FilterForm, ShipsList, ShipsGallery } from './components';
 
 import { LayoutView } from './Ships.types';
 
-const EXCHANGE_RATES = gql`
-  query GetExchangeRates {
-    rates(currency: "AUD") {
-      currency
-      rate
-    }
-  }
-`;
-
 const Ships = (): JSX.Element => {
-  const { data, loading, error } = useQuery(EXCHANGE_RATES);
   const [selectedView, setSelectedView] = useState(LayoutView.LIST);
-
-  if (loading) {
-    console.log('loading...');
-  } else if (error) {
-    console.log('error...');
-  } else {
-    console.log(data.rates);
-  }
 
   return (
     <MainLayout>

@@ -1,3 +1,5 @@
+import { useQuery } from '@apollo/client';
+
 import {
   Grid,
   Card,
@@ -5,10 +7,16 @@ import {
   Text,
   CardHeader,
   Heading,
+  Box,
 } from '@chakra-ui/react';
 
+import { GET_SHIPS } from '@/features/ships/queries/ships.graphql';
+
 const ShipsGallery = (): JSX.Element => {
-  const ships = [1, 2, 3, 4, 5];
+  const { data, loading, error } = useQuery(GET_SHIPS);
+
+  if (loading) return <Box>Loading...</Box>;
+  if (error) return <Box>Error</Box>;
 
   return (
     <Grid
@@ -22,13 +30,15 @@ const ShipsGallery = (): JSX.Element => {
       ]}
       mt='14'
     >
-      {ships.map((ship, index) => (
-        <Card key={index}>
+      {data?.ships?.map((ship) => (
+        <Card key={ship?.id}>
           <CardHeader pb='0' fontWeight='bold'>
-            <Heading size='md'>Ship {ship}</Heading>
+            <Heading size='md'>{ship?.name}</Heading>
           </CardHeader>
 
           <CardBody>
+            {ship?.image && <img src={ship?.image} />}
+
             <Text noOfLines={3}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
               maiores officia magnam voluptate sequi aliquid similique beatae

@@ -6,7 +6,7 @@ import {
 } from '@apollo/client';
 
 const httpLink = new HttpLink({
-  uri: import.meta.env.VITE_API_URI,
+  uri: 'https://spacex-production.up.railway.app/',
 });
 
 export const client = new ApolloClient({
