@@ -20,6 +20,7 @@ const ShipsGallery = (): JSX.Element => {
 
   return (
     <Grid
+      data-testid='ships-gallery'
       gap='4'
       templateColumns={[
         'repeat(1, 1fr)',

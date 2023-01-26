@@ -24,7 +24,7 @@ const Ships = (): JSX.Element => {
             <IconButton
               key={index}
               isActive={selectedView === view}
-              data-selected-view={selectedView}
+              data-testid={view}
               cursor='pointer'
               aria-label='view-button'
               padding='2'
