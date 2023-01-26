@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
-import { Flex, Heading, IconButton } from '@chakra-ui/react';
-import { IoGridOutline, IoListOutline } from 'react-icons/io5';
+import { Flex, Heading, IconButton, useDisclosure } from '@chakra-ui/react';
+import { IoGridOutline, IoListOutline, IoFilter } from 'react-icons/io5';
 
 import { MainLayout } from '@/layouts';
 
@@ -10,7 +10,14 @@ import { FilterForm, ShipsList, ShipsGallery } from './components';
 import { LayoutView } from './Ships.types';
 
 const Ships = (): JSX.Element => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const btnRef = useRef<HTMLButtonElement>(null);
+
   const [selectedView, setSelectedView] = useState(LayoutView.LIST);
+
+  const toggleDrawerVisibility = () => {
+    isOpen ? onClose() : onOpen();
+  };
 
   return (
     <MainLayout>
@@ -37,10 +44,27 @@ const Ships = (): JSX.Element => {
           ))}
         </Flex>
 
-        <FilterForm />
+        <IconButton
+          ref={btnRef}
+          onClick={toggleDrawerVisibility}
+          cursor='pointer'
+          aria-label='gallery-icon-button'
+          padding='2'
+          ml='3'
+          icon={<IoFilter />}
+        />
       </Flex>
 
       {selectedView === LayoutView.LIST ? <ShipsList /> : <ShipsGallery />}
+
+      <FilterForm
+        isOpen={isOpen}
+        onClose={onClose}
+        onSubmit={(data) => {
+          console.log(data);
+        }}
+        btnRef={btnRef}
+      />
     </MainLayout>
   );
 };
