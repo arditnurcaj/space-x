@@ -1,15 +1,17 @@
-import {
-  ApolloClient,
-  ApolloLink,
-  InMemoryCache,
-  HttpLink,
-} from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import fetch from 'cross-fetch';
 
-const httpLink = new HttpLink({
+import { ClientProps } from './client.types';
+
+const link = new HttpLink({
   uri: 'https://spacex-production.up.railway.app/',
+  fetch,
 });
 
-export const client = new ApolloClient({
+const clientProps: ClientProps = {
+  link,
   cache: new InMemoryCache(),
-  link: ApolloLink.from([httpLink]),
-});
+  fetch,
+};
+
+export const client = new ApolloClient(clientProps);

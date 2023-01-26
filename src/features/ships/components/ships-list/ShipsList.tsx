@@ -18,7 +18,7 @@ const ShipsList = (): JSX.Element => {
   if (error) return <Box>Error</Box>;
 
   return (
-    <Box mt='10'>
+    <Box mt='10' data-testid='ships-list'>
       {data?.ships?.map((ship, index) => (
         <Card key={index} mb='4'>
           <CardHeader pb='0' fontWeight='bold'>
