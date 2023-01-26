@@ -1,7 +1,8 @@
 # space-x
 
 React App with info regarding Space-X ships
-## Run Locally
+
+## Run locally in steps
 
 Clone the project
 
