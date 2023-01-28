@@ -57,7 +57,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
     >
       <DrawerOverlay />
 
-      <form onSubmit={handleSubmit}>
+      <form data-testid='filter-form' onSubmit={handleSubmit}>
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>Filter ships</DrawerHeader>
@@ -68,6 +68,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
               value={formState.type}
               onChange={handleChange}
               disabled={loading}
+              data-testid='select-ship-type-input'
             >
               {shipTypes?.map((type, index) => (
                 <option key={index} value={type}>
@@ -81,7 +82,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
             <Button variant='outline' mr={3} onClick={onClose}>
               Cancel
             </Button>
-            <Button type='submit' colorScheme='blue'>
+            <Button type='submit' data-testid='submit-btn' colorScheme='blue'>
               Submit
             </Button>
           </DrawerFooter>

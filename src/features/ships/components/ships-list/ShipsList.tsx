@@ -21,17 +21,8 @@ const ShipsList = (props: ShipsListProps): JSX.Element => {
           </CardHeader>
 
           <CardBody>
-            {ship?.type && (
-              <Text>
-                <strong>Type:</strong> {ship.type}
-              </Text>
-            )}
-
-            {ship?.year_built && (
-              <Text>
-                <strong>Year Built:</strong> {ship.year_built}
-              </Text>
-            )}
+            {ship?.type && <Text>Type: {ship.type}</Text>}
+            {ship?.year_built && <Text>Year Built: {ship.year_built}</Text>}
           </CardBody>
         </Card>
       ))}

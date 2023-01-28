@@ -73,7 +73,8 @@ const Ships = (): JSX.Element => {
           ref={btnRef}
           onClick={toggleDrawerVisibility}
           cursor='pointer'
-          aria-label='gallery-icon-button'
+          data-testid='filter-btn'
+          aria-label='filter-icon-button'
           padding='2'
           ml='3'
           icon={<IoFilter />}
