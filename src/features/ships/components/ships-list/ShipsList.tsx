@@ -1,5 +1,3 @@
-import { useQuery } from '@apollo/client';
-
 import {
   Box,
   Card,
@@ -9,17 +7,14 @@ import {
   Text,
 } from '@chakra-ui/react';
 
-import { GET_SHIPS } from '@/features/ships/queries/ships.graphql';
+import { ShipsListProps } from './ShipsList.types';
 
-const ShipsList = (): JSX.Element => {
-  const { data, loading, error } = useQuery(GET_SHIPS);
-
-  if (loading) return <Box>Loading...</Box>;
-  if (error) return <Box>Error</Box>;
+const ShipsList = (props: ShipsListProps): JSX.Element => {
+  const { entries } = props;
 
   return (
     <Box mt='10' data-testid='ships-list'>
-      {data?.ships?.map((ship, index) => (
+      {entries?.ships?.map((ship, index) => (
         <Card key={index} mb='4'>
           <CardHeader pb='0' fontWeight='bold'>
             <Heading size='md'>{ship?.name}</Heading>

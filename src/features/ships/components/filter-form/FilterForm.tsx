@@ -1,6 +1,9 @@
-import { FormEvent } from 'react';
+import { FormEvent, useMemo } from 'react';
+
+import { useQuery } from '@apollo/client';
 
 import {
+  Box,
   Button,
   Drawer,
   DrawerBody,
@@ -9,18 +12,35 @@ import {
   DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
-  Input,
+  Select,
 } from '@chakra-ui/react';
 
 import { FilterFormProps } from './FilterForm.types';
 
+import { GET_SHIPS_TYPES } from '@/features/ships/queries/ships.graphql';
+
 const FilterForm = (props: FilterFormProps): JSX.Element => {
   const { btnRef, isOpen, onClose, onSubmit } = props;
+
+  const { data, loading, error } = useQuery(GET_SHIPS_TYPES);
+
+  const shipTypes = useMemo(() => {
+    const tempTypes = new Set<string>();
+
+    data?.ships?.forEach((ship) => {
+      ship?.type && tempTypes.add(ship.type);
+    });
+
+    return [...tempTypes];
+  }, [data]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit({ type: 'test ' });
   };
+
+  if (loading) return <Box>Loading...</Box>;
+  if (error) return <Box>Error</Box>;
 
   return (
     <Drawer
@@ -38,7 +58,13 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
           <DrawerHeader>Filter ships</DrawerHeader>
 
           <DrawerBody>
-            <Input placeholder='Type here...' />
+            <Select placeholder='Select ship type'>
+              {shipTypes?.map((type, index) => (
+                <option key={index} value={type}>
+                  {type}
+                </option>
+              ))}
+            </Select>
           </DrawerBody>
 
           <DrawerFooter>

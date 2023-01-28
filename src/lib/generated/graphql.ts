@@ -1297,6 +1297,13 @@ export type GetShipsQuery = {
   } | null> | null;
 };
 
+export type GetShipsTypesQueryVariables = Exact<{ [key: string]: never }>;
+
+export type GetShipsTypesQuery = {
+  __typename?: 'Query';
+  ships?: Array<{ __typename?: 'Ship'; type?: string | null } | null> | null;
+};
+
 export const GetShipsDocument = {
   kind: 'Document',
   definitions: [
@@ -1329,3 +1336,28 @@ export const GetShipsDocument = {
     },
   ],
 } as unknown as DocumentNode<GetShipsQuery, GetShipsQueryVariables>;
+export const GetShipsTypesDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'GetShipsTypes' },
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'ships' },
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                { kind: 'Field', name: { kind: 'Name', value: 'type' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<GetShipsTypesQuery, GetShipsTypesQueryVariables>;

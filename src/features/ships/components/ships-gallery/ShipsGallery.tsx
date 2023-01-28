@@ -1,5 +1,3 @@
-import { useQuery } from '@apollo/client';
-
 import {
   Grid,
   Card,
@@ -7,16 +5,14 @@ import {
   Text,
   CardHeader,
   Heading,
+  Image,
   Box,
 } from '@chakra-ui/react';
 
-import { GET_SHIPS } from '@/features/ships/queries/ships.graphql';
+import { ShipsGallerysProps } from './ShipsGallery.types';
 
-const ShipsGallery = (): JSX.Element => {
-  const { data, loading, error } = useQuery(GET_SHIPS);
-
-  if (loading) return <Box>Loading...</Box>;
-  if (error) return <Box>Error</Box>;
+const ShipsGallery = (props: ShipsGallerysProps): JSX.Element => {
+  const { entries } = props;
 
   return (
     <Grid
@@ -31,14 +27,31 @@ const ShipsGallery = (): JSX.Element => {
       ]}
       mt='14'
     >
-      {data?.ships?.map((ship) => (
+      {entries?.ships?.map((ship) => (
         <Card key={ship?.id}>
           <CardHeader pb='0' fontWeight='bold'>
             <Heading size='md'>{ship?.name}</Heading>
           </CardHeader>
 
           <CardBody>
-            {ship?.image && <img src={ship?.image} />}
+            <Box mb='2'>
+              {ship?.image ? (
+                <Image
+                  src={ship.image}
+                  h='48'
+                  w='100%'
+                  fit='cover'
+                  referrerPolicy='no-referrer'
+                />
+              ) : (
+                <Image
+                  src='https://via.placeholder.com/600x400?text=No+Image'
+                  h='48'
+                  w='100%'
+                  fit='cover'
+                />
+              )}
+            </Box>
 
             <Text noOfLines={3}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus

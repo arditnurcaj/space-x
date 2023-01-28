@@ -1,16 +1,25 @@
 import { useRef, useState } from 'react';
+import { useQuery } from '@apollo/client';
 
-import { Flex, Heading, IconButton, useDisclosure } from '@chakra-ui/react';
+import {
+  Flex,
+  Heading,
+  IconButton,
+  useDisclosure,
+  Box,
+} from '@chakra-ui/react';
 import { IoGridOutline, IoListOutline, IoFilter } from 'react-icons/io5';
-
-import { MainLayout } from '@/layouts';
 
 import { FilterForm, ShipsList, ShipsGallery } from './components';
 
 import { LayoutView } from './Ships.types';
 
+import { GET_SHIPS } from '@/features/ships/queries/ships.graphql';
+
 const Ships = (): JSX.Element => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { data, loading, error } = useQuery(GET_SHIPS);
+
   const btnRef = useRef<HTMLButtonElement>(null);
 
   const [selectedView, setSelectedView] = useState(LayoutView.LIST);
@@ -19,8 +28,13 @@ const Ships = (): JSX.Element => {
     isOpen ? onClose() : onOpen();
   };
 
+  if (loading) return <Box>Loading...</Box>;
+  if (error) return <Box>Error</Box>;
+
+  console.log(data);
+
   return (
-    <MainLayout>
+    <>
       <Flex alignItems='center' justifyContent='space-between'>
         <Heading as='h2' size='lg'>
           Ships
@@ -55,7 +69,11 @@ const Ships = (): JSX.Element => {
         />
       </Flex>
 
-      {selectedView === LayoutView.LIST ? <ShipsList /> : <ShipsGallery />}
+      {selectedView === LayoutView.LIST ? (
+        <ShipsList entries={data} />
+      ) : (
+        <ShipsGallery entries={data} />
+      )}
 
       <FilterForm
         isOpen={isOpen}
@@ -65,7 +83,7 @@ const Ships = (): JSX.Element => {
         }}
         btnRef={btnRef}
       />
-    </MainLayout>
+    </>
   );
 };
 

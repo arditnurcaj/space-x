@@ -14,3 +14,11 @@ export const GET_SHIPS = gql(`
     }
   }
 `);
+
+export const GET_SHIPS_TYPES = gql(`
+  query GetShipsTypes {
+    ships {
+      type
+    }
+  }
+`);
