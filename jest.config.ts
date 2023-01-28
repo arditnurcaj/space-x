@@ -8,7 +8,7 @@ export default {
     '^.+\\.(tsx|ts)?$': 'ts-jest',
   },
   coveragePathIgnorePatterns: [
-    '<rootDir>/src/test/',
+    '<rootDir>/src/lib/generated',
     '<rootDir>/node_modules/',
   ],
   setupFilesAfterEnv: ['<rootDir>/src/setup-tests.ts'],

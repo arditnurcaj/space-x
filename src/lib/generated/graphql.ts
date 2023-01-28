@@ -1288,11 +1288,8 @@ export type GetShipsQuery = {
     __typename?: 'Ship';
     id?: string | null;
     image?: string | null;
-    status?: string | null;
     type?: string | null;
-    weight_kg?: number | null;
     year_built?: number | null;
-    model?: string | null;
     name?: string | null;
   } | null> | null;
 };
@@ -1322,11 +1319,8 @@ export const GetShipsDocument = {
               selections: [
                 { kind: 'Field', name: { kind: 'Name', value: 'id' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'image' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'status' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'type' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'weight_kg' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'year_built' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'model' } },
                 { kind: 'Field', name: { kind: 'Name', value: 'name' } },
               ],
             },

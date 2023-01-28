@@ -2,7 +2,6 @@ import {
   Grid,
   Card,
   CardBody,
-  Text,
   CardHeader,
   Heading,
   Image,
@@ -28,7 +27,7 @@ const ShipsGallery = (props: ShipsGallerysProps): JSX.Element => {
       mt='14'
     >
       {entries?.map((ship) => (
-        <Card key={ship?.id}>
+        <Card key={ship?.id} data-testid='ship'>
           <CardHeader pb='0' fontWeight='bold'>
             <Heading size='md'>{ship?.name}</Heading>
           </CardHeader>
@@ -52,13 +51,6 @@ const ShipsGallery = (props: ShipsGallerysProps): JSX.Element => {
                 />
               )}
             </Box>
-
-            <Text noOfLines={3}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              maiores officia magnam voluptate sequi aliquid similique beatae
-              neque numquam expedita minus molestiae autem ea eos, harum nobis
-              error dicta quas?
-            </Text>
           </CardBody>
         </Card>
       ))}

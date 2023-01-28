@@ -1,4 +1,4 @@
-import { Box, Heading } from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 
 import { MainLayoutProps } from './MainLayout.types';
 
@@ -6,7 +6,7 @@ const MainLayout = (props: MainLayoutProps): JSX.Element => {
   const { children } = props;
 
   return (
-    <Box height='100%'>
+    <Flex height='100%' direction='column'>
       <Box as='nav' px='5' py='4' bg='black'>
         <Heading fontSize='4xl' color='white'>
           Space X
@@ -19,10 +19,11 @@ const MainLayout = (props: MainLayoutProps): JSX.Element => {
         overflowY='scroll'
         px={[5, 5, 14]}
         py='7'
+        flex='1'
       >
         {children}
       </Box>
-    </Box>
+    </Flex>
   );
 };
 

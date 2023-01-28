@@ -10,7 +10,12 @@ import {
 } from '@chakra-ui/react';
 import { IoGridOutline, IoListOutline, IoFilter } from 'react-icons/io5';
 
-import { FilterForm, ShipsList, ShipsGallery } from './components';
+import { CustomSpinner } from '@/components';
+import {
+  FilterForm,
+  ShipsList,
+  ShipsGallery,
+} from '@/features/ships/components';
 
 import { LayoutView } from './Ships.types';
 
@@ -35,8 +40,9 @@ const Ships = (): JSX.Element => {
     return data?.ships?.filter((ship) => ship?.type === shipsType);
   }, [data, shipsType]);
 
-  if (loading) return <Box>Loading...</Box>;
-  if (error) return <Box>Error</Box>;
+  if (loading) return <CustomSpinner />;
+
+  if (error) return <Box>Unexpected error, please refresh!</Box>;
 
   return (
     <>

@@ -5,11 +5,8 @@ export const GET_SHIPS = gql(`
     ships {
       id
       image
-      status
       type
-      weight_kg
       year_built
-      model,
       name
     }
   }

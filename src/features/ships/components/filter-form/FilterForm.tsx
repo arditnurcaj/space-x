@@ -45,8 +45,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
     setFormState({ type: e.target.value });
   };
 
-  if (loading) return <Box>Loading...</Box>;
-  if (error) return <Box>Error</Box>;
+  if (error) return <Box>Error loading form data!</Box>;
 
   return (
     <Drawer
@@ -68,6 +67,7 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
               placeholder='Select ship type'
               value={formState.type}
               onChange={handleChange}
+              disabled={loading}
             >
               {shipTypes?.map((type, index) => (
                 <option key={index} value={type}>

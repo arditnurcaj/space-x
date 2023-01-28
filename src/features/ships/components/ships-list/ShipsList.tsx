@@ -15,18 +15,23 @@ const ShipsList = (props: ShipsListProps): JSX.Element => {
   return (
     <Box mt='10' data-testid='ships-list'>
       {entries?.map((ship, index) => (
-        <Card key={index} mb='4'>
+        <Card key={index} mb='4' data-testid='ship'>
           <CardHeader pb='0' fontWeight='bold'>
             <Heading size='md'>{ship?.name}</Heading>
           </CardHeader>
 
           <CardBody>
-            <Text noOfLines={3}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus
-              maiores officia magnam voluptate sequi aliquid similique beatae
-              neque numquam expedita minus molestiae autem ea eos, harum nobis
-              error dicta quas?
-            </Text>
+            {ship?.type && (
+              <Text>
+                <strong>Type:</strong> {ship.type}
+              </Text>
+            )}
+
+            {ship?.year_built && (
+              <Text>
+                <strong>Year Built:</strong> {ship.year_built}
+              </Text>
+            )}
           </CardBody>
         </Card>
       ))}
