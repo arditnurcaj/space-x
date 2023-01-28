@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useQuery } from '@apollo/client';
 
 import {
@@ -23,15 +23,20 @@ const Ships = (): JSX.Element => {
   const btnRef = useRef<HTMLButtonElement>(null);
 
   const [selectedView, setSelectedView] = useState(LayoutView.LIST);
+  const [shipsType, setShipsType] = useState('');
 
   const toggleDrawerVisibility = () => {
     isOpen ? onClose() : onOpen();
   };
 
+  const filteredShips = useMemo(() => {
+    if (shipsType === '') return data?.ships;
+
+    return data?.ships?.filter((ship) => ship?.type === shipsType);
+  }, [data, shipsType]);
+
   if (loading) return <Box>Loading...</Box>;
   if (error) return <Box>Error</Box>;
-
-  console.log(data);
 
   return (
     <>
@@ -70,16 +75,17 @@ const Ships = (): JSX.Element => {
       </Flex>
 
       {selectedView === LayoutView.LIST ? (
-        <ShipsList entries={data} />
+        <ShipsList entries={filteredShips} />
       ) : (
-        <ShipsGallery entries={data} />
+        <ShipsGallery entries={filteredShips} />
       )}
 
       <FilterForm
         isOpen={isOpen}
         onClose={onClose}
         onSubmit={(data) => {
-          console.log(data);
+          toggleDrawerVisibility();
+          setShipsType(data.type);
         }}
         btnRef={btnRef}
       />

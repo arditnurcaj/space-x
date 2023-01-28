@@ -14,7 +14,7 @@ const ShipsList = (props: ShipsListProps): JSX.Element => {
 
   return (
     <Box mt='10' data-testid='ships-list'>
-      {entries?.ships?.map((ship, index) => (
+      {entries?.map((ship, index) => (
         <Card key={index} mb='4'>
           <CardHeader pb='0' fontWeight='bold'>
             <Heading size='md'>{ship?.name}</Heading>

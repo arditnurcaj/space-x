@@ -1,5 +1,5 @@
-import { GetShipsQuery } from '@/lib/generated/graphql';
+import { Ship } from '@/lib/generated/graphql';
 
 export interface ShipsListProps {
-  entries?: GetShipsQuery;
+  entries?: (Ship | null)[] | null | undefined;
 }

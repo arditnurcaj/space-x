@@ -1,4 +1,4 @@
-import { FormEvent, useMemo } from 'react';
+import { ChangeEvent, FormEvent, useMemo, useState } from 'react';
 
 import { useQuery } from '@apollo/client';
 
@@ -24,6 +24,8 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
 
   const { data, loading, error } = useQuery(GET_SHIPS_TYPES);
 
+  const [formState, setFormState] = useState({ type: '' });
+
   const shipTypes = useMemo(() => {
     const tempTypes = new Set<string>();
 
@@ -36,7 +38,11 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    onSubmit({ type: 'test ' });
+    onSubmit({ type: formState.type });
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setFormState({ type: e.target.value });
   };
 
   if (loading) return <Box>Loading...</Box>;
@@ -58,7 +64,11 @@ const FilterForm = (props: FilterFormProps): JSX.Element => {
           <DrawerHeader>Filter ships</DrawerHeader>
 
           <DrawerBody>
-            <Select placeholder='Select ship type'>
+            <Select
+              placeholder='Select ship type'
+              value={formState.type}
+              onChange={handleChange}
+            >
               {shipTypes?.map((type, index) => (
                 <option key={index} value={type}>
                   {type}

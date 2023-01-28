@@ -27,7 +27,7 @@ const ShipsGallery = (props: ShipsGallerysProps): JSX.Element => {
       ]}
       mt='14'
     >
-      {entries?.ships?.map((ship) => (
+      {entries?.map((ship) => (
         <Card key={ship?.id}>
           <CardHeader pb='0' fontWeight='bold'>
             <Heading size='md'>{ship?.name}</Heading>
